@@ -15,8 +15,8 @@ export default {
 
 <style>
     
-    /* @import url('css/aui.css');
+    @import url('css/aui.css');
     @import url('css/aui-flex.css');
-    @import url('css/mystyle.css'); */
+    @import url('css/mystyle.css');
 
 </style>

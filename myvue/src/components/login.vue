@@ -11,32 +11,32 @@
             </div>
             <p><div class="aui-btn aui-btn-info" @click="loginBtn">登录</div></p>
         </div> -->
-        <div  class="aui-content-padded center">
+        <div  class="aui-flex-row aui-flex-item-12 aui-flex-middle aui-flex-center">
             <img src="../assets/logo.png">
             <h2 v-text="msg"></h2>
-            <ul class="aui-list aui-form-list">
+            <ul class="">
             <!-- <li class="aui-list-header">带有输入框</li> -->
             <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
+                <div class="aui-flex-col">
+                    <div class="aui-flex-item-4 aui-flex-center aui-flex-middle aui-flex-col">
                         用户名:
                     </div>
-                    <div class="aui-list-item-input">
+                    <div class="aui-flex-item-8">
                         <input type="text" placeholder="请输入用户名" v-model="parames.userName">
                     </div>
                 </div>
             </li>
             <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
+                <div class="aui-flex-col">
+                    <div class="aui-flex-item-4 aui-flex-center aui-flex-middle aui-flex-col">
                         密码:
                     </div>
-                    <div class="aui-list-item-input">
+                    <div class="aui-flex-item-8">
                         <input type="password" placeholder="请输入密码" v-model="parames.passWord">
                     </div>
                 </div>
             </li>
-            <li>
+            <li class="aui-flex-row aui-flex-center">
                 <br>
                 <div class="aui-btn aui-btn-info" @click="loginBtn">登录</div>
             </li>
