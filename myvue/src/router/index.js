@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import login from '@/components/login'
+import myLogin from '@/components/myLogin'
 import list from '@/components/list'
 import detail from '@/components/detail'
 import Count from '@/components/Count'
@@ -14,8 +14,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: login
+      name: 'myLogin',
+      component: myLogin
     },{
       path:'/list',
       component:list
