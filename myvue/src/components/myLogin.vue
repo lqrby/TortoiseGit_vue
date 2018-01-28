@@ -1,13 +1,16 @@
 <template>
-  <div class="login ">
-        <h1>Login</h1>
-        <form method="post">
-            <!-- <h2>{{isLogin}}</h2> -->
-            <input type="text" name="u" placeholder="请输入用户名" required="required" v-model="user.userName"/>
-            <input type="password" name="p" placeholder="请输入密码" required="required" v-model="user.passWord" />
-            <button type="button" class="btn btn-primary btn-block btn-large" @click="loginBtn">登录</button>
-        </form>
-    </div>
+    <el-container>
+        <el-main class="login_width">
+            <el-row>
+                <el-col :span="24">
+                    <el-col class="login_title" :span="24" :center="true">Login</el-col>
+                    <el-input class="login_input" placeholder="请输入用户名" v-model="user.userName" clearable></el-input>
+                    <el-input class="login_input" type="password" placeholder="请输入密码" v-model="user.passWord" clearable></el-input>
+                    <el-button class="login_buttom" :span="24" type="primary" @click="loginBtn">登录</el-button>
+                </el-col>
+            </el-row>
+        </el-main>
+    </el-container>
 </template>
 
 
@@ -38,13 +41,11 @@ export default {
             }else if(this.user.passWord == null || this.user.passWord ==''){
                 alert("请输入密码");
             }else{
-                // console.log("进入这里了")
                 axios.get("../../static/login.json").then((res) =>{
                 if(res.data.userName == this.user.userName && res.data.passWord == this.user.passWord){
-                //this.loginAction();
                 sessionStorage.setItem("user",JSON.stringify(res.data));
                 store.dispatch('loginAction');
-                this.$router.push({ path: '/list' });
+                this.$router.push({ path: '/user/userList' });
                 
                 }else{
                     alert("用户名或密码错误")

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import myLogin from '@/components/myLogin'
-import list from '@/components/list'
+import userList from '@/components/user/userList'
 import detail from '@/components/detail'
 import Count from '@/components/Count'
 import Error from '@/components/Error'
@@ -17,8 +17,9 @@ export default new Router({
       name: 'myLogin',
       component: myLogin
     },{
-      path:'/list',
-      component:list
+      path:'/user/userList',
+      component:userList,
+       meta:{auth:true}
     },{
       name:'detail',
       path:'/detail',
