@@ -51,8 +51,9 @@ export default {
   },
   
   mounted () {
-    var id=this.$route.params.id;
-    console.log("id:"+this.$route.params.id)
+    let id = 1;
+    // var id=this.$route.params.id;
+    // console.log("id:"+this.$route.params.id)
     userDetail:axios.get("../../static/json/detail"+id+".json").then((res) =>{
       if(res.status == 200){
         this.item = res.data;

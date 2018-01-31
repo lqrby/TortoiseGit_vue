@@ -4,8 +4,8 @@
             <el-row>
                 <el-col :span="24">
                     <el-col class="login_title" :span="24" :center="true">Login</el-col>
-                    <el-input class="login_input" placeholder="请输入用户名" v-model="user.userName" clearable></el-input>
-                    <el-input class="login_input" type="password" placeholder="请输入密码" v-model="user.passWord" clearable></el-input>
+                    <el-input class="login_input" placeholder="请输入用户名" v-model="loginUser.userName" clearable></el-input>
+                    <el-input id="passWord" class="login_input" type="password" placeholder="请输入密码" v-model="loginUser.passWord" clearable></el-input>
                     <el-button class="login_buttom" :span="24" type="primary" @click="loginBtn">登录</el-button>
                 </el-col>
             </el-row>
@@ -25,29 +25,41 @@ export default {
   data () {
       return {
           msg:'登录页面',
-          user:{
+          loginUser:{
             userName:null,
             passWord:null
           }
       }
   },
+  computed: {
+    ...mapState(['LoginedUser']),//状态值简写
+    ...mapGetters(['LoginedUser'])//过滤状态值简写
+  },
   methods:{
       //...mapMutations(['add','reduce']),//同步调用方法的简写
-      ...mapActions(['loginAction']),//异步调用方法的简写
+      ...mapActions(['loginAction','logoutAction']),//异步调用方法的简写
       
       loginBtn:function(){
-          if(this.user.userName == null || this.user.userName == '' ){
+
+          if(this.loginUser.userName == null || this.loginUser.userName == '' ){
                 alert("请输入用户名");
-            }else if(this.user.passWord == null || this.user.passWord ==''){
+            }else if(this.loginUser.passWord == null || this.loginUser.passWord ==''){
                 alert("请输入密码");
             }else{
                 axios.get("../../static/login.json").then((res) =>{
-                if(res.data.userName == this.user.userName && res.data.passWord == this.user.passWord){
+                if(res.data.userName == this.loginUser.userName && res.data.passWord == this.loginUser.passWord){
+                res.data.passWord = "";
+                //this.loginUser.userName = "";
+                //this.loginUser.passWord = "";
+                
                 sessionStorage.setItem("user",JSON.stringify(res.data));
+                localStorage.setItem("loginuser",JSON.stringify(res.data));
                 store.dispatch('loginAction');
-                this.$router.push({ path: '/user/userList' });
+                this.$router.push({ path:'/user/userList'});
                 
                 }else{
+                    this.loginUser.userName = "";
+                    this.loginUser.passWord = "";
                     alert("用户名或密码错误")
                 }
                 })
@@ -56,8 +68,20 @@ export default {
                 });
 
             }
-      },
-     store
-  }
+      }
+     
+  },
+  store,
+
 }
+ window.onpopstate = function() {  
+     if(window.location.hash === '#/'){
+         window.history.pushState('forward', null, ''); 
+         window.history.forward(1);
+         store.dispatch('logoutAction');
+     }
+     
+    
+ };  
+
 </script>

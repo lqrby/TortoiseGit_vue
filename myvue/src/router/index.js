@@ -19,7 +19,7 @@ export default new Router({
     },{
       path:'/user/userList',
       component:userList,
-       meta:{auth:true}
+      meta:{auth:true}
     },{
       name:'detail',
       path:'/detail',

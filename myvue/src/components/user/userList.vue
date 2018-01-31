@@ -1,6 +1,6 @@
 <template>
    <el-container style="border: 1px solid #eee">
-  <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+  <el-aside width="300px" style="background-color: rgb(238, 241, 246)">
     <el-menu :default-openeds="['1', '3']">
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-message"></i>导航一</template>
@@ -60,19 +60,21 @@
           <el-dropdown-item>删除</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-          <img class="avatars" :src="LoginedUser.avatar"></img>
+          <!-- <img class="avatars" :src="LoginedUser.avatar"></img> -->
           <span v-text="LoginedUser.name"></span>
     </el-header>
     
     <el-main>
-      <el-table :data="tableData">
-        <el-table-column prop="date" label="日期" width="140">
-        </el-table-column>
-        <el-table-column prop="name" label="姓名" width="120">
-        </el-table-column>
-        <el-table-column prop="address" label="地址">
-        </el-table-column>
-      </el-table>
+      <router-link :to="{name:'detail'}">
+        <el-table :data="tableData">
+          <el-table-column prop="userId" label="ID" width=""></el-table-column>
+          <el-table-column prop="date" label="日期" width=""></el-table-column>
+          <el-table-column prop="name" label="姓名" width=""></el-table-column>
+          <el-table-column prop="gender" label="性别"></el-table-column>
+          <el-table-column prop="age" label="年龄"></el-table-column>
+          <el-table-column prop="address" label="地址"></el-table-column>
+        </el-table>
+      </router-link>
     </el-main>
   </el-container>
 </el-container>
@@ -85,26 +87,33 @@
   import axios from 'axios'
   export default {
     data() {
-      const item = {
-        date: '2016-05-02',
-        
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      };
       return {
-        tableData: Array(20).fill(item)
+        tableData:[]
       }
     },
     computed:{
-    // ...mapState(['LoginedUser']),//状态值简写
     ...mapState(['LoginedUser']),//状态值简写
-    // username(){
-    //    store.dispatch('LoginedUser');
-    //    console.log(store.dispatch('LoginedUser'))
-    //  }
     ...mapGetters(['LoginedUser'])//过滤状态值简写
-    
-  },
+    },
+    mounted() {
+        this.userList()
+    },
+    methods:{
+      userList:function(){
+        axios.get("../../../static/json/userJson/userList.json").then((res) =>{
+          if(res.data){
+            //console.log("用户数据是："+res.data.user)
+            this.tableData=res.data.user;
+          //sessionStorage.setItem("user",JSON.stringify(res.data));
+          }else{
+            alert("暂无数据");
+          }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+      }
+    },
     store
   };
 </script>

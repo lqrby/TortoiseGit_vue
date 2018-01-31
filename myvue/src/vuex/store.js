@@ -8,7 +8,6 @@ const state = {
         name: '',
         avatar: '',//用户头像
         userName: ''
-        
        }
 }
 
@@ -16,6 +15,8 @@ const state = {
 const mutations = {
     //登录
     login(state){
+        console.log("登录成功了")
+        //console.log("我是mutations")
         state.isLogin = true;
         // 然后去sessionStorage取用户数据
         state.LoginedUser = JSON.parse(sessionStorage.getItem('user'));
@@ -23,20 +24,37 @@ const mutations = {
 
     // 登出
     logout (state) {
-        state.logined = false
-        state.LoginedUser = ''
+        console.log("销户");
+        state.logined = false;
+        state.LoginedUser = '';
+        sessionStorage.setItem("user","");
     }
 
 }
 
 const getters = {
     LoginedUser:function(state){
+       // console.log("我是getters")
+      // console.log("本地储存是："+localStorage.getItem('loginuser'))
         return  state.LoginedUser = JSON.parse(sessionStorage.getItem('user'));
-    }
+    },
+    // siLogin:function(state){
+    //     alert(1111)
+    //     state.LoginedUser = JSON.parse(sessionStorage.getItem('user'));
+    //     console.log("*******用户状态是********"+state.LoginedUser)
+    //     if(state.LoginedUser){
+    //         state.isLogin= true;
+    //     }else{
+    //         state.isLogin= false; 
+    //     }
+        
+    //     return state.isLogin
+    // }
 }
 // 创建驱动actions可以使得mutations得以启动
 const actions = {
     loginAction({commit}){
+        //console.log("我是actions")
         commit('login');
     },
     // 同样来个logout
