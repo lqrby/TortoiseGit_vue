@@ -4,21 +4,18 @@
             <el-row>
                 <el-col :span="24">
                     <el-col class="login_title" :span="24" :center="true">Login</el-col>
-                    <el-input class="login_input" placeholder="请输入用户名" v-model="loginUser.userName" clearable></el-input>
-                    <el-input id="passWord" class="login_input" type="password" placeholder="请输入密码" v-model="loginUser.passWord" clearable></el-input>
-                    <el-button class="login_buttom" :span="24" type="primary" @click="loginBtn">登录</el-button>
+                    <el-input @keyup="enterUp($event)" class="login_input" placeholder="请输入用户名" v-model="loginUser.userName" clearable></el-input>
+                    <el-input id="passWord" @keyup="enterUp($event)" class="login_input" type="password" placeholder="请输入密码" v-model="loginUser.passWord" clearable></el-input>
+                    <el-button id="loginId" class="login_buttom" :span="24" type="primary" @click="loginBtn">登录</el-button>
                 </el-col>
             </el-row>
         </el-main>
     </el-container>
 </template>
-
-
 <script>
 import Vue from 'vue'
 import store from '@/vuex/store';
-import { mapState,mapMutations,mapGetters,mapActions } from 'vuex';
-
+import { mapState,mapMutations, mapGetters,mapActions } from 'vuex';
 import axios from 'axios'
 export default {
   name:'login',
@@ -68,20 +65,29 @@ export default {
                 });
 
             }
+      },
+      enterUp:function(e){
+          console.log("按下了键盘")
+          //let theEvent = window.event || e;
+         //let code = theEvent.keyCode || theEvent.which;
+        if(e.keyCode==13){
+            let loginbtn = document.getElementById("loginId");
+            loginbtn.click(); 
+            console.log(11111)
+        }
+      },
+      denglu:function(){
+          console.log(123456)
       }
-     
   },
   store,
-
 }
  window.onpopstate = function() {  
-     if(window.location.hash === '#/'){
-         window.history.pushState('forward', null, ''); 
-         window.history.forward(1);
-         store.dispatch('logoutAction');
-     }
-     
-    
+    if(window.location.hash === '#/'){
+        window.history.pushState('forward', null, ''); 
+        window.history.forward(1);
+        store.dispatch('logoutAction');
+    }
  };  
 
 </script>

@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
     
     /* @import url('css/aui.css');
     @import url('css/aui-flex.css');
