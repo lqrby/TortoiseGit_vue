@@ -1,10 +1,11 @@
 <template>
     <el-container>
         <el-main class="login_width">
+            
             <el-row>
                 <el-col :span="24">
                     <el-col class="login_title" :span="24" :center="true">Login</el-col>
-                    <el-input @keyup="enterUp($event)" class="login_input" placeholder="请输入用户名" v-model="loginUser.userName" clearable></el-input>
+                    <el-input @keyup="enterUp($event)" class="login_input" placeholder="请输入用户名" v-model="loginUser.userName" clearable v-focus></el-input>
                     <el-input id="passWord" @keyup="enterUp($event)" class="login_input" type="password" placeholder="请输入密码" v-model="loginUser.passWord" clearable></el-input>
                     <el-button id="loginId" class="login_buttom" :span="24" type="primary" @click="loginBtn">登录</el-button>
                 </el-col>
@@ -13,7 +14,8 @@
     </el-container>
 </template>
 <script>
-import Vue from 'vue'
+// import Vue from 'vue'
+import {focus} from '@/directive/focus.js'
 import store from '@/vuex/store';
 import { mapState,mapMutations, mapGetters,mapActions } from 'vuex';
 import axios from 'axios'
@@ -55,7 +57,7 @@ export default {
                 this.$router.push({ path:'/user/userList'});
                 
                 }else{
-                    this.loginUser.userName = "";
+                    //this.loginUser.userName = "";
                     this.loginUser.passWord = "";
                     alert("用户名或密码错误")
                 }

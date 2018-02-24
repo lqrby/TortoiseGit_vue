@@ -6,6 +6,7 @@ import userList from '@/components/user/userList'
 import detail from '@/components/detail'
 import Count from '@/components/Count'
 import Error from '@/components/Error'
+import Direct from '@/components/direct'
 
 Vue.use(Router)
 
@@ -31,6 +32,10 @@ export default new Router({
     {
       path:'/count',
       component:Count
+    },{
+      name:'direct',
+      path:'/direct',
+      component:Direct
     }
   ]
 })
