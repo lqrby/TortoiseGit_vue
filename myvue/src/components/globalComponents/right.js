@@ -1,7 +1,6 @@
-import Vue from 'vue'
-
-const right = Vue.component('right',{
-    template:`<el-main>
+import Vue from "vue";
+const right = Vue.component("right", {
+  template: `<el-main>
     <router-link :to="{name:'detail'}">
       <el-table :data="tableData">
         <el-table-column prop="userId" label="ID" width=""></el-table-column>
@@ -12,6 +11,15 @@ const right = Vue.component('right',{
         <el-table-column prop="address" label="地址"></el-table-column>
       </el-table>
     </router-link>
-  </el-main>`
-})
-export {mains}
+  </el-main>`,
+  props: ["tableData"],
+  computed: {
+    a(){
+      return 12+3
+    }
+  },
+  data() {
+    return {};
+  }
+});
+export { right };

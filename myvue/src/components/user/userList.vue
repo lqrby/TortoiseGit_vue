@@ -1,21 +1,10 @@
 <template>
-   <el-container style="border: 1px solid #eee">
-  <left></left>
-  <el-container>
-    <el-header style="text-align: right; font-size: 12px">
-      <el-dropdown>
-        <i class="el-icon-setting" style="margin-right: 15px"></i>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>查看</el-dropdown-item>
-          <el-dropdown-item>新增</el-dropdown-item>
-          <el-dropdown-item>删除</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-          <!-- <img class="avatars" :src="LoginedUser.avatar"></img> -->
-          <span v-text="LoginedUser.name"></span>
-    </el-header>
+   <el-container style="flex-direction:column; border: 1px solid #eee">
+    <top :LoginedUser='LoginedUser'></top>
+  <el-container style="">
     
-    <!-- <right></right> -->
+    <left></left>
+    <right :tableData='tableData'></right>
   </el-container>
 </el-container>
 </template>
@@ -23,6 +12,9 @@
 <script>
   
 import Vue from 'vue'
+import {top} from '@/components/globalComponents/top.js';
+import {left} from '@/components/globalComponents/left.js';
+  import {right} from '@/components/globalComponents/right.js';
   import store from '@/vuex/store';
   import { mapState,mapMutations,mapGetters,mapActions } from 'vuex';
   import axios from 'axios'
@@ -57,8 +49,7 @@ import Vue from 'vue'
     },
     store
   };
-  import {left} from '@/components/globalComponents/left.js';
-  // import {right} from '@/components/globalComponents/right.js';
+  
 </script>
 <style>
   .el-header {
