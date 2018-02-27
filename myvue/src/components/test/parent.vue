@@ -45,26 +45,8 @@
     </el-menu>
   </el-col>
   <el-container>
-    <el-main>
-      <router-link :to="{name:'detail'}">
-        <el-table :data="tableData" border>
-          <el-table-column prop="userId" label="ID" width="80"></el-table-column>
-          <el-table-column prop="name" label="姓名" width="150"></el-table-column>
-          <el-table-column prop="gender" label="性别" width="80"></el-table-column>
-          <el-table-column prop="age" label="年龄" width="80"></el-table-column>
-          <el-table-column prop="date" label="日期" width="150"></el-table-column>
-          <el-table-column prop="address" label="地址" width=""></el-table-column>
-          <el-table-column fixed="right" label="操作" width="">
-            <template slot-scope="scope">
-              <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-              <el-button type="text" size="small">编辑</el-button>
-              <el-button @click.native.prevent="deleteRow(scope.$index, tableData)" type="text" size="small">移除</el-button>
-        
-            </template>
-          </el-table-column>
-        </el-table>
-      </router-link>
-    </el-main>
+    <!-- 引入子组件 -->
+    
 
     <el-footer>
       <div class="block">
@@ -82,22 +64,14 @@
   </div>
     </el-footer>
     </el-container>
-   <el-container style="flex-direction:column; border: 1px solid #eee">
-    <top :LoginedUser='LoginedUser'></top>
-  <el-container style="">
-    
-    <left></left>
-    <right :tableData='tableData'></right>
   </el-container>
+  <router-view name="main"/>
 </el-container>
+
 </template>
 
 <script>
-  
-import Vue from 'vue'
-import {top} from '@/components/globalComponents/top.js';
-import {left} from '@/components/globalComponents/left.js';
-  import {right} from '@/components/globalComponents/right.js';
+  import Vue from 'vue'
   import store from '@/vuex/store';
   import { mapState,mapMutations,mapGetters,mapActions } from 'vuex';
   import axios from 'axios'
@@ -161,7 +135,6 @@ import {left} from '@/components/globalComponents/left.js';
     },
     store
   };
-  
 </script>
 <style>
   .el-header {

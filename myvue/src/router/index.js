@@ -10,6 +10,7 @@ import Error from '@/components/Error'
 import list from '@/components/test/list'
 import parent from '@/components/test/parent'
 import detailTest from '@/components/test/detail1'
+import Direct from '@/components/direct'
 
 Vue.use(Router)
 
@@ -46,6 +47,9 @@ export default new Router({
       //   {path:'/test/list',component:list},
       //   // {path:'detailTest',component:detailTest},
       // ]
+      // name:'direct',
+      // path:'/direct',
+      // component:Direct
     }
   ]
 })
