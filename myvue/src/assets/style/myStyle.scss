@@ -1,12 +1,33 @@
+
+//颜色
+$red:#ff0000;
+$black:#000;
+$white:#fff;
+//百分比
+$hundred:100%;
+
 $fontStack:    Helvetica, sans-serif;
-$primaryColor: #333;
-// $background:red;
+$primaryColor: #333;//主题颜色
+html,body{
+  height:$hundred;
+  margin: 0;
+}
 body {
   font-family: $fontStack;
   color: $primaryColor;
 }
-.login_width{
+#app{
+  height: $hundred;
 }
+.el-container{
+  height: $hundred;
+}
+.el-aside{
+  height: $hundred;
+}
+// .el-menu{
+//   display: none;
+// }
 
 
 

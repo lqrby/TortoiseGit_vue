@@ -4,8 +4,8 @@
             <el-row>
                 <el-col :span="24">
                     <el-col class="login_title" :span="24" :center="true">Login</el-col>
-                    <el-input @keyup="enterUp($event)" class="login_input" placeholder="请输入用户名" v-model="loginUser.userName" clearable></el-input>
-                    <el-input id="passWord" @keyup="enterUp($event)" class="login_input" type="password" placeholder="请输入密码" v-model="loginUser.passWord" clearable></el-input>
+                    <el-input @keyup.native="enterUp($event)" class="login_input" placeholder="请输入用户名" v-model="loginUser.userName" clearable></el-input>
+                    <el-input id="passWord" @keyup.native="enterUp($event)" class="login_input" type="password" placeholder="请输入密码" v-model="loginUser.passWord" clearable></el-input>
                     <el-button id="loginId" class="login_buttom" :span="24" type="primary" @click="loginBtn">登录</el-button>
                 </el-col>
             </el-row>
@@ -36,7 +36,7 @@ export default {
       //...mapMutations(['add','reduce']),//同步调用方法的简写
       ...mapActions(['loginAction','logoutAction']),//异步调用方法的简写
       
-      loginBtn:function(){
+      loginBtn(){
 
           if(this.loginUser.userName == null || this.loginUser.userName == '' ){
                 alert("请输入用户名");
@@ -50,9 +50,9 @@ export default {
                 //this.loginUser.passWord = "";
                 
                 sessionStorage.setItem("user",JSON.stringify(res.data));
-                localStorage.setItem("loginuser",JSON.stringify(res.data));
+                //localStorage.setItem("loginuser",JSON.stringify(res.data));
                 store.dispatch('loginAction');
-                this.$router.push({ path:'/user/userList'});
+                this.$router.push({ path:'/test/parent'});
                 
                 }else{
                     this.loginUser.userName = "";
@@ -67,18 +67,13 @@ export default {
             }
       },
       enterUp:function(e){
-          console.log("按下了键盘")
-          //let theEvent = window.event || e;
-         //let code = theEvent.keyCode || theEvent.which;
+        //let theEvent = window.event || e;
+        //let code = theEvent.keyCode || theEvent.which;
         if(e.keyCode==13){
             let loginbtn = document.getElementById("loginId");
             loginbtn.click(); 
-            console.log(11111)
         }
       },
-      denglu:function(){
-          console.log(123456)
-      }
   },
   store,
 }

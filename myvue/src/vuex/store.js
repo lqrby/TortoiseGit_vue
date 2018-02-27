@@ -36,20 +36,9 @@ const getters = {
     LoginedUser:function(state){
        // console.log("我是getters")
       // console.log("本地储存是："+localStorage.getItem('loginuser'))
-        return  state.LoginedUser = JSON.parse(sessionStorage.getItem('user'));
-    },
-    // siLogin:function(state){
-    //     alert(1111)
-    //     state.LoginedUser = JSON.parse(sessionStorage.getItem('user'));
-    //     console.log("*******用户状态是********"+state.LoginedUser)
-    //     if(state.LoginedUser){
-    //         state.isLogin= true;
-    //     }else{
-    //         state.isLogin= false; 
-    //     }
-        
-    //     return state.isLogin
-    // }
+        return state.LoginedUser = JSON.parse(sessionStorage.getItem('user'));
+    }
+    
 }
 // 创建驱动actions可以使得mutations得以启动
 const actions = {

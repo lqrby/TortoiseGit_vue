@@ -3,14 +3,18 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import myLogin from '@/components/myLogin'
 import userList from '@/components/user/userList'
+
 import detail from '@/components/detail'
 import Count from '@/components/Count'
 import Error from '@/components/Error'
+import list from '@/components/test/list'
+import parent from '@/components/test/parent'
+import detailTest from '@/components/test/detail1'
 
 Vue.use(Router)
 
 export default new Router({
-  // mode:'history',
+  //mode:'history',
   routes: [
     {
       path: '/',
@@ -19,7 +23,7 @@ export default new Router({
     },{
       path:'/user/userList',
       component:userList,
-      meta:{auth:true}
+      meta:{auth:true},
     },{
       name:'detail',
       path:'/detail',
@@ -31,6 +35,17 @@ export default new Router({
     {
       path:'/count',
       component:Count
+    },{
+      path:'/test/parent',
+      components:{
+        default:parent,
+        main:list
+      }
+      // children:[
+      //    {path:'/',component:parent},
+      //   {path:'/test/list',component:list},
+      //   // {path:'detailTest',component:detailTest},
+      // ]
     }
   ]
 })
